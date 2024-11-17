@@ -6,7 +6,7 @@ This guide will help you set up and initialize the project. Follow these steps c
 
 Before you begin, ensure that you have the following installed on your machine:
 
-- [Flutter](https://flutter.dev/docs/get-started/install) (version 2.0 or higher)
+- [Flutter](https://flutter.dev/docs/get-started/install)
 - [Android Studio](https://developer.android.com/studio) (optional, for Android emulator)
 - A compatible code editor, like [Visual Studio Code](https://code.visualstudio.com/).
 
