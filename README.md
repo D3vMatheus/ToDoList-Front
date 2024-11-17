@@ -32,12 +32,14 @@ Replace <repository-url> with the actual repository URL, and <project-directory>
 ### 3. Run the Project on Web
 If you want to run the application on a web browser, follow these steps:
 
-3.1 Install Dependencies
+#### 3.1 Install Dependencies
 Run the following command to install the required dependencies:
+
 ```bash
 flutter pub get
 ```
-3.2 Run the Application
+
+#### 3.2 Run the Application
 Once the dependencies are installed, you can run the application by executing:
 
 ```bash
@@ -48,20 +50,25 @@ Then select a browser to run the application.
 ### 4. Run the Project on Android Emulator
 If you prefer to run the application on an Android emulator using Android Studio, follow these steps:
 
-4.1 Open the Project in Android Studio
+#### 4.1 Open the Project in Android Studio
 Open Android Studio and click on Open.
 Navigate to the project folder and open it.
-4.2 Set Up the Emulator
+
+#### 4.2 Set Up the Emulator
 In Android Studio, go to AVD Manager (Android Virtual Device Manager).
 Create a new virtual device or select an existing device.
 Once the emulator is set up, start the emulator.
-4.3 Install Dependencies
+
+#### 4.3 Install Dependencies
 Run the following command to install the required dependencies:
+
 ```bash
 flutter pub get
 ```
-4.4 Run the Application on the Emulator
+
+#### 4.4 Run the Application on the Emulator
 Once the dependencies are installed and the emulator is running, execute the following command to run the app:
+
 ```bash
 flutter run
 ```
