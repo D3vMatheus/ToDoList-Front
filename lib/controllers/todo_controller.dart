@@ -28,14 +28,10 @@ Future<void> getAllToDo() async {
 
     if (response.statusCode == 200) {
       final content = json.decode(response.body)['data'];
-      todos.value = content.map<ToDo>((item) => ToDo.fromJson(item)).toList(); // Update the entire listprint('Response Body: ${response.body}');
+      todos.value = content.map<ToDo>((item) => ToDo.fromJson(item)).toList();
 
-    } else {
-      print('Failed to fetch data. Status code: ${response.statusCode}');
     }
   } catch (e) {
-    print('Error: ${e.toString()}');
-  } finally {
     loading.value = false;
   }
 }
@@ -45,7 +41,6 @@ Future addToDo({required String name}) async{
     'name': name,
     'is_completed': false,
   };
-  print(data);
 try{
     loading.value = true;
   var request =  await http.post(baseurl,
@@ -55,7 +50,6 @@ try{
       },
       body: json.encode(data),);
 
-    print(request.body);
     if(request.statusCode == 201){
       loading.value = false;
     }

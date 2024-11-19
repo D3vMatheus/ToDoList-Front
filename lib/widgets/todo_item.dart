@@ -4,7 +4,7 @@ import 'package:todoapp/controllers/todo_controller.dart';
 import 'package:get/get.dart';
 
 class TodoItem extends StatelessWidget {
-  const TodoItem({Key? key}) : super(key: key);
+  const TodoItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,33 +12,52 @@ class TodoItem extends StatelessWidget {
 
     return ListView.builder(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: todoController.todos.value.length,
                 itemBuilder:(context, index){
+                final currentTodo = todoController.todos.value[index];
+
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   child: ListTile(
                     onTap: () {
-                      // Add functionality for tapping the item here
+                      todoController.updateToDo(currentTodo.id,
+                                                currentTodo.name, 
+                                                currentTodo.isCompleted);
                     },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    leading: Icon(Icons.check_box, color: taskcheckbox),
-                    tileColor: secondary,
-                    title: Text(todoController.todos.value[index].name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: text),),
+                    leading: Transform.scale(
+                      scale: 1.5,
+                      child:Checkbox(
+                          side: const BorderSide(
+                            color: primary, 
+                            width: 1.5,
+                          ),
+                          activeColor: taskcheckbox,
+                          
+                          value: currentTodo.isCompleted
+                            ? true
+                            : false,
+                          onChanged:(value) async{
+                            await todoController.updateToDo(currentTodo.id, currentTodo.name, value!);
+                    }),
+                    ),
+                    tileColor: currentTodo.isCompleted ? primary: secondary,
+                    title: Text(currentTodo.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: text),),
                     trailing: Container(
                     padding: const EdgeInsets.all(0),
-                    margin: const EdgeInsets.symmetric(vertical: 12),
-                    height: 36,
-                    width: 36,
+                    height: 32,
+                    width: 32,
                     decoration: BoxDecoration(
                       color: delete,
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: IconButton(
                       icon: const Icon(Icons.delete),
-                      iconSize: 18,
+                      iconSize: 16,
                       onPressed: () {
-                        // Add delete functionality here
+                        todoController.deleteToDo(currentTodo.id);
                       },
                       color: Colors.white,
                     ),
